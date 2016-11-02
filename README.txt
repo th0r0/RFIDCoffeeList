@@ -8,3 +8,5 @@
 - run c:\>python CloudCoffeeTest.py to test application and connection.
 	
 More Info can be found inside the code.
+
+xxx
