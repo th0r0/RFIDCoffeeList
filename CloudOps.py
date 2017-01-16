@@ -115,14 +115,14 @@ def _uploadSheetToCloud(values, sheetId, sheetRange, upOrApp):
 def updateLocalCsv():
 	''' Updates the locally stored information with data from the cloudbased google spreadsheet
 	'''    
-	values = _getSheetDataFromCloud(ConfMod.getSheetId(), ConfMod.getSheetRange())
+	values = _getSheetDataFromCloud(ConfMod.getSheetId(), ConfMod.getSheetRangeUp())
 	arrayToCsv(ConfMod.getCsvFilePath(), values)
 	return 0
 
 def updateCloudCsv():
 	''' Update the cloud stored spreadsheet with local data'''
 	values = csvToArray(ConfMod.getCsvFilePath())
-	_uploadSheetToCloud(values, ConfMod.getSheetId(), ConfMod.getSheetRange(), 'UPDATE')
+	_uploadSheetToCloud(values, ConfMod.getSheetId(), ConfMod.getSheetRangeDown(), 'UPDATE')
 	return 0
 
 

@@ -42,9 +42,16 @@ def getSheetId():
         log.warn("Cannot get SheetId: ConfigItem not initialized")
         return None
         
-def getSheetRange():
+def getSheetRangeUp():
     if CONFIGITEM:
-        return CONFIGITEM.get('CloudInfoSection','cloud.sheetrange')
+        return CONFIGITEM.get('CloudInfoSection','cloud.sheetrangeup')
+    else:
+        log.warn("Cannot get SheetRange: ConfigItem not initialized")
+        return None
+
+def getSheetRangeDown():
+    if CONFIGITEM:
+        return CONFIGITEM.get('CloudInfoSection','cloud.sheetrangedown')
     else:
         log.warn("Cannot get SheetRange: ConfigItem not initialized")
         return None
