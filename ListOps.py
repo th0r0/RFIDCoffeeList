@@ -46,7 +46,7 @@ def consumeCoffee(userId):
             log.info('User with id '+ str(userId) +' could not be found')
             timestamp = strftime("%Y-%m-%d_%H:%M:%S")
             #appending new entry for user
-            values.append([userId,1])                 
+            values.append([userId,1,userId])                 
             
         #Store in csv
         log.debug('Updating spreadsheet')            
