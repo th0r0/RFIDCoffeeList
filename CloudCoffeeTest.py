@@ -16,6 +16,7 @@ def main():
 	#Testing code for existing user	
 	#Get remote data
 	ListController.updateLocalFile()
+	
 	#Increase count
 	ListController.addCoffee4User('54fea7ef')
 	#get some info	

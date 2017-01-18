@@ -5,6 +5,9 @@ from oauth2client.service_account import ServiceAccountCredentials
 import logging
 from FileOps import arrayToCsv, csvToArray
 import ConfMod
+import FileOps
+import string
+
 
 '''
 This module deals with all cloud related operations like connecting, retrieving and uploading data etc.
@@ -95,7 +98,14 @@ def _uploadSheetToCloud(values, sheetId, sheetRange, upOrApp):
 	service = _getService()
 	
 	#create upload payload
-	body = {'values': values}
+	#Since only 2 columns should be uploaded, the array is resized
+	#Apparently I'm to stupid for numpy, so this is kinda ugly.. 
+	upValues = []
+	for i in values:
+		upValues.append(i[0:2])
+		
+
+	body = {'values': upValues}
 	
 	#Upload changed valueset to cloud
 	if upOrApp.upper() == 'UPDATE':
@@ -114,9 +124,29 @@ def _uploadSheetToCloud(values, sheetId, sheetRange, upOrApp):
 
 def updateLocalCsv():
 	''' Updates the locally stored information with data from the cloudbased google spreadsheet
-	'''    
-	values = _getSheetDataFromCloud(ConfMod.getSheetId(), ConfMod.getSheetRangeDown())
-	arrayToCsv(ConfMod.getCsvFilePath(), values)
+	''' 
+	#Before starting, we need to make sure that no data is overwritten with empty strings
+	#Get remote data   
+	valuesCloud = _getSheetDataFromCloud(ConfMod.getSheetId(), ConfMod.getSheetRangeDown())
+	#Get local data 
+	valuesLocal = FileOps.csvToArray(ConfMod.getCsvFilePath())
+	
+	#Compare
+	for row in valuesCloud:
+		for rowL in valuesLocal:
+			if row[0]==rowL[0]:#if corresponding id found
+				try:
+					if len(row)>2:#remote has name -> indexlen is >2?
+						if len(rowL)>2:#if a value is set locally
+							rowL[2]=row[2]
+					else:
+						log.debug("No remote value for name found")
+				except IndexError:
+						log.error("There was an error while checking the usernames")
+							 
+						
+	
+	arrayToCsv(ConfMod.getCsvFilePath(), valuesLocal)
 	return 0
 
 def updateCloudCsv():

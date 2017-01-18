@@ -1,50 +1,20 @@
 ID,CoffeeAmount,Name
-c5a3ca19,100,Andrea
-0f89a715,4,Andrew
-ad8d537e,1,Anna
-d6ecb282,3,Becky
-e2f91189,2,Benjamin
-e4252fcc,10,Carl
-ca9aba43,2,Carrie
-54fea7ad,15,Dorothy
-4339657c,3,Dylan
-7f496292,6,Edward
-497ec1de,4,Ellen
-eee898f3,2,Fiona
-71a2bf70,3,John
-b8224edd,3,Jonathan
-297c1d1d,3,Joseph
-0506953d,1,Josephine
-c4aaadd3,1,Karen
-df8d8828,3,Kevin
-9e45f4c8,1,Lisa
-f411df86,0,Mary
-161b3b45,2,Maureen
-8a3c8e6e,1,Nick
-b8710db4,0,Olivia
-99da9adc,2,Pamela
-a397ad14,1,Patrick
-7f61bdcb,3,Robert
-ff2db504,0,Sean
-41e05938,5,Stacy
-488a19ea,1,Thomas
-50e26df4,4,Will
-dca9b3d3,3,NewUser_2016-10-18_14:45:37
-faee8bc4,1,NewUser_2016-10-18_14:46:03
-a2a38ba5,1,NewUser_2016-10-18_14:46:12
-8635a975,1,NewUser_2016-10-18_14:50:17
-1,6,NewUser_2016-10-18_15:05:05
-54fea7ee,8,Tester
-54fea7ef,20,Tester3
-54fea7efT154,1
-54fea7efT672,1
-54fea7efT656,1
-54fea7efT449,1
-54fea7efT844,1
-54fea7efT209,1
-54fea7efT149,1
-54fea7efT391,1
-54fea7efT157,1
-54fea7efT967,1
-54fea7efT735,1
-54fea7efT146,1
+7c13554b,0,Test1
+25668fab,0,Test2
+c69888a1,1,c69888a1
+0f104504,0,Thomas
+0fe74404,0,Floman
+6f0f4504,0,Thorge
+54fea7ef,27,Tester 1
+54fea7efT48,1,tester 2
+54fea7efT452,1,tester 3
+54fea7efT225,1,tester 4
+54fea7efT697,1,tester 5
+54fea7efT41,1,tester 6
+54fea7efT741,1,tester 7
+54fea7efT788,1,tester 8
+54fea7efT821,1,tester 9
+54fea7efT814,2,tester 10
+54fea7efT764,1,54fea7efT764
+54fea7efT950,1,54fea7efT950
+54fea7efT784,1,54fea7efT784
