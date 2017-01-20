@@ -5,7 +5,13 @@ function sendEmails() {
   var date = new Date();
   var dateOfDay = new Date(date.getTime());
   var dateFormatted = Utilities.formatDate(dateOfDay, "Europe/Berlin", "yyyy-MM");
+  
+  // URL to picture to use as inline HTML element
+  var coffeeLogoUrl = "https://openclipart.org/image/300px/svg_to_png/104185/1294538687.png&disposition=attachment";
     
+  // Fetch picture and store it as blob
+  var coffeeLogoBlob = UrlFetchApp.fetch(coffeeLogoUrl).getBlob().setName("coffeeLogoBlob");
+  
   // Get reference to sheet with coffee list
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
 
@@ -37,40 +43,31 @@ function sendEmails() {
     var emailAddress = row[3];
     var cost = row[4];
     
-    // URL to picture to use as inline HTML element
-    var coffeeLogoUrl = "https://openclipart.org/image/300px/svg_to_png/264683/I-heart-Coffee.png&disposition=attachment";
+    // Valid email address found
+    if (emailAddress != ""){
     
-    // Fetch picture and store it as blob
-    var coffeeLogoBlob = UrlFetchApp.fetch(coffeeLogoUrl).getBlob().setName("coffeeLogoBlob");
-    
-    // Send email
-    MailApp.sendEmail({
-      to: emailAddress,
-      subject: "Kaffeerechnung " + dateFormatted,
-      
-      // TODO: Change size of 
-      htmlBody: "<img src='cid:coffeeLogo' style='width:142px; height:79px;'><br>" +
-              "Sie haben " + coffeeAmount  + " Kaffee für " + cost  + " € getrunken.",
-      inlineImages:
-       {
-         coffeeLogo: coffeeLogoBlob
-       }
-   });
+      // Send email
+      MailApp.sendEmail({
+                          to: emailAddress,
+                          subject: "Kaffeerechnung " + dateFormatted,
+                          htmlBody: "<img src='cid:coffeeLogo' style='width:50px; height:52px;'><br>" +
+                                   "Hallo " + name + ",<br>" +
+                                   "Die Kaffeerechnung ist mal wieder fällig.<br>" +
+                                   "Sie haben <b>" + coffeeAmount  + " Kaffee</b> für <b>" + cost  + " €</b> getrunken.<br>" +
+                                   "Bitte den Betrag per PayPal an 'thorge.andersen@man.eu' senden,<br>" +
+                                   "oder einfach den PayPalMe-Link verwenden http://paypal.me/coffeeMDT/" + cost + "<br>" +
+                                   "Mehr info hier: https://www.paypal.com/de/webapps/mpp/send-money-online<br>" +
+                                   "und hier: https://www.paypal.me<br>" +
+                                   "Wichtig: Senden an Freunde und Familie auswählen, sonst gönnt sich PayPal eine Transaktionsgebühr ;)<br>" + 
+                                   "Gruß<br>"+
+                                   "Dein RasPi",
+                         inlineImages:{
+                                        coffeeLogo: coffeeLogoBlob
+                         }
+      });
+    } // Valid email found
 
-    
-    
-    
-    
-    // Build subject
-    //var subject = "Kaffeerechnung " + dateFormatted;
-    
-    // Build email body
-    //message = "Sie haben " + coffeeAmount  + " Kaffee für " + cost  + " € getrunken.";
-    
-    // Send email
-    //MailApp.sendEmail(emailAddress, subject, message);
   }
 
-  
   
 }
