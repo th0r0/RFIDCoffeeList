@@ -63,6 +63,11 @@ def addCoffee4User(userId):
     userId -- The userid requesting a coffee'''
     ListOps.consumeCoffee(userId)
     
+def addMilk4User(userId):
+    '''Increase the amount of milk for given user
+    userId -- The userid who has brought milk'''
+    ListOps.addMilk(userId)    
+    
 def getUsername(userId):
     '''Returns the real name of the given user id'''
     return ListOps.getUsername(userId)

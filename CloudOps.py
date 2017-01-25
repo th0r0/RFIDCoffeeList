@@ -7,6 +7,7 @@ from FileOps import arrayToCsv, csvToArray
 import ConfMod
 import FileOps
 import string
+import ListOps
 
 
 '''
@@ -98,11 +99,11 @@ def _uploadSheetToCloud(values, sheetId, sheetRange, upOrApp):
 	service = _getService()
 	
 	#create upload payload
-	#Since only 2 columns should be uploaded, the array is resized
+	#Since only 3 columns should be uploaded, the array is resized
 	#Apparently I'm to stupid for numpy, so this is kinda ugly.. 
 	upValues = []
 	for i in values:
-		upValues.append(i[0:2])
+		upValues.append(i[0:3])
 		
 
 	body = {'values': upValues}
@@ -134,11 +135,11 @@ def updateLocalCsv():
 	#Compare
 	for row in valuesCloud:
 		for rowL in valuesLocal:
-			if row[0]==rowL[0]:#if corresponding id found
+			if row[ListOps.COLUMN_ID]==rowL[ListOps.COLUMN_ID]:#if corresponding id found
 				try:
-					if len(row)>2:#remote has name -> indexlen is >2?
-						if len(rowL)>2:#if a value is set locally
-							rowL[2]=row[2]
+					if len(row)>3:#remote has name -> indexlen is >3?
+						if len(rowL)>3:#if a value is set locally
+							rowL[ListOps.COLUMN_NAME]=row[ListOps.COLUMN_NAME]	#Overwrite local value with cloud data					
 					else:
 						log.debug("No remote value for name found")
 				except IndexError:
